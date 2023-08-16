@@ -1,63 +1,42 @@
+import '../../src.dart';
+
 class ListEntity {
   const ListEntity({
-    required this.title,
-    required this.description,
+    required this.id,
+    required this.items,
     required this.createdAt,
-    required this.updatedAt,
   });
 
-  final String title;
-  final String description;
+  final String id;
+  final List<ItemEntity> items;
   final DateTime createdAt;
-  final DateTime updatedAt;
 
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       (other is ListEntity &&
           runtimeType == other.runtimeType &&
-          title == other.title &&
-          description == other.description &&
-          createdAt == other.createdAt &&
-          updatedAt == other.updatedAt);
+          id == other.id &&
+          items == other.items &&
+          createdAt == other.createdAt);
 
   @override
-  int get hashCode => title.hashCode ^ description.hashCode ^ createdAt.hashCode ^ updatedAt.hashCode;
+  int get hashCode => id.hashCode ^ items.hashCode ^ createdAt.hashCode;
 
   @override
   String toString() {
-    return 'ListEntity{ title: $title, description: $description, createdAt: $createdAt, updatedAt: $updatedAt,}';
+    return 'ListEntity{ id: $id, items: $items, createdAt: $createdAt,}';
   }
 
   ListEntity copyWith({
-    String? title,
-    String? description,
+    String? id,
+    List<ItemEntity>? items,
     DateTime? createdAt,
-    DateTime? updatedAt,
   }) {
     return ListEntity(
-      title: title ?? this.title,
-      description: description ?? this.description,
+      id: id ?? this.id,
+      items: items ?? this.items,
       createdAt: createdAt ?? this.createdAt,
-      updatedAt: updatedAt ?? this.updatedAt,
-    );
-  }
-
-  Map<String, dynamic> toMap() {
-    return {
-      'title': title,
-      'description': description,
-      'createdAt': createdAt,
-      'updatedAt': updatedAt,
-    };
-  }
-
-  factory ListEntity.fromMap(Map<String, dynamic> map) {
-    return ListEntity(
-      title: map['title'] as String,
-      description: map['description'] as String,
-      createdAt: map['createdAt'] as DateTime,
-      updatedAt: map['updatedAt'] as DateTime,
     );
   }
 }
