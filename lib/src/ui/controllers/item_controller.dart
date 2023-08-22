@@ -7,9 +7,9 @@ class ItemController {
   final TextEditingController titleController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
 
-  Future<void> create() async {
+  Future<void> create({required String listId}) async {
     await _services.create(
-      listId: '1',
+      listId: listId,
       title: titleController.text,
       description: descriptionController.text,
     );

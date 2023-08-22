@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:list_app/src/src.dart';
 
 class ItemEntityMapper {
@@ -23,8 +24,8 @@ class ItemEntityMapper {
         listId: map['listId'] as String,
         title: map['title'] as String,
         description: map['description'] as String,
-        createdAt: DateTime.fromMillisecondsSinceEpoch(map['createdAt']),
-        updatedAt: DateTime.fromMillisecondsSinceEpoch(map['updatedAt']),
+        createdAt: (map['createdAt'] as Timestamp).toDate(),
+        updatedAt: (map['updatedAt'] as Timestamp).toDate(),
       );
     } catch (e) {
       throw Exception('JsonParsingException: $e');

@@ -9,4 +9,21 @@ abstract class ItemRepository {
     required String title,
     required String description,
   });
+
+  Future<Either<Failure, ItemEntity>> update({
+    required String itemId,
+    required String listId,
+    required String title,
+    required String description,
+  });
+
+  Future<Either<Failure, void>> delete({
+    required String itemId,
+    required String listId,
+  });
+
+  Future<Either<Failure, List<ItemEntity>>> search({
+    required String listId,
+    required String query,
+  });
 }

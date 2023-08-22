@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:list_app/src/src.dart';
-import 'package:list_app/src/ui/views/lists_view.dart';
 
-void main() {
+void main() async {
   Config.init();
+  WidgetsFlutterBinding.ensureInitialized();
+  await Config.initFirebase();
   runApp(const MyApp());
 }
 
@@ -19,12 +20,11 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: PageView(
-        children: const [
-          ListsView(),
-          NewItemView(),
-        ],
-      ),
+      routes: {
+        '/new_list': (context) => NewListView(),
+        '/list_view': (context) => const ListsView(),
+      },
+      home: HomeView(),
     );
   }
 }

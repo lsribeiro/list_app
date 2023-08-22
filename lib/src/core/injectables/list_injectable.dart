@@ -17,6 +17,7 @@ class ListInjectable extends Injectable {
   }
 
   void _attachServices() {
-    injector.registerLazySingleton(() => ListServices(injector.get<ListRepositoryImpl>()));
+    injector
+        .registerLazySingleton(() => ListServices(injector.get<ListRepositoryImpl>(), injector.get<UserServices>()));
   }
 }

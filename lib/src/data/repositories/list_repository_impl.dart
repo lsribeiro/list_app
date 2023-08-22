@@ -17,9 +17,12 @@ class ListRepositoryImpl extends ListRepository {
   }
 
   @override
-  Future<Either<Failure, ListEntity>> create() async {
+  Future<Either<Failure, ListEntity>> create({
+    required String name,
+    required String ownerId,
+  }) async {
     try {
-      return Right(await _dataSource.create());
+      return Right(await _dataSource.create(name: name, ownerId: ownerId));
     } catch (e) {
       return Left(Failure(message: e.toString()));
     }
